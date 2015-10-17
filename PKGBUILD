@@ -24,7 +24,7 @@ pkgname=('php'
 _pkgver=7.0.0
 _rcver=RC5
 pkgver=${_pkgver}$_rcver
-pkgrel=1
+pkgrel=1.1
 arch=('i686' 'x86_64')
 license=('PHP')
 url='http://www.php.net'
@@ -259,6 +259,8 @@ package_php() {
 	rm -f ${pkgdir}/usr/lib/php/modules/{enchant,gd,imap,intl,ldap,mcrypt,odbc,pdo_odbc,pgsql,pdo_pgsql,pspell,snmp,sqlite3,pdo_sqlite,tidy,xsl}.so
 	# remove empty directory
 	rmdir ${pkgdir}/usr/include/php/include
+    # remove conflicting /var/run folder
+    rmdir ${pkgdir}/var/run
 	# fix broken link
 	ln -sf phar.phar ${pkgdir}/usr/bin/phar
 
