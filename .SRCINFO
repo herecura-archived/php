@@ -1,0 +1,148 @@
+pkgbase = php
+	pkgver = 7.0.0RC5
+	pkgrel = 1
+	url = http://www.php.net
+	arch = i686
+	arch = x86_64
+	license = PHP
+	checkdepends = procps-ng
+	makedepends = apache
+	makedepends = c-client
+	makedepends = postgresql-libs
+	makedepends = libldap
+	makedepends = postfix
+	makedepends = sqlite
+	makedepends = unixodbc
+	makedepends = net-snmp
+	makedepends = libzip
+	makedepends = enchant
+	makedepends = file
+	makedepends = freetds
+	makedepends = libmcrypt
+	makedepends = tidyhtml
+	makedepends = aspell
+	makedepends = libltdl
+	makedepends = gd
+	makedepends = icu
+	makedepends = curl
+	makedepends = libxslt
+	makedepends = openssl
+	makedepends = db
+	makedepends = gmp
+	makedepends = systemd
+	makedepends = libedit
+	source = http://downloads.php.net/~ab/php-7.0.0RC5.tar.xz
+	source = php.ini.patch
+	source = apache.conf
+	source = logrotate.d.php-fpm
+	source = php-fpm.service
+	source = php-fpm.tmpfiles
+	md5sums = a490f25243a19dc6f577dcbc539b97ff
+	md5sums = fe290cd3bd61a794f14472afde7ad282
+	md5sums = 00071bea18deee67a3b3dc636630823f
+	md5sums = 25bc67ad828e8147a817410b68d8016c
+	md5sums = cc2940f5312ba42e7aa1ddfab74b84c4
+	md5sums = c60343df74f8e1afb13b084d5c0e47ed
+
+pkgname = php
+	pkgdesc = An HTML-embedded scripting language
+	depends = pcre
+	depends = libxml2
+	depends = curl
+	depends = libzip
+	depends = libedit
+	depends = openssl
+	backup = etc/php/php.ini
+
+pkgname = php-cgi
+	pkgdesc = CGI and FCGI SAPI for PHP
+	depends = php
+
+pkgname = php-apache
+	pkgdesc = Apache SAPI for PHP
+	depends = php
+	depends = apache
+	backup = etc/httpd/conf/extra/php7_module.conf
+
+pkgname = php-fpm
+	pkgdesc = FastCGI Process Manager for PHP
+	install = php-fpm.install
+	depends = php
+	depends = systemd
+	backup = etc/php/php-fpm.conf
+
+pkgname = php-embed
+	pkgdesc = Embedded PHP SAPI library
+	depends = php
+
+pkgname = php-pear
+	pkgdesc = PHP Extension and Application Repository
+	depends = php
+	backup = etc/php/pear.conf
+
+pkgname = php-enchant
+	pkgdesc = enchant module for PHP
+	depends = php
+	depends = enchant
+
+pkgname = php-gd
+	pkgdesc = gd module for PHP
+	depends = php
+	depends = gd
+
+pkgname = php-imap
+	pkgdesc = imap module for PHP
+	depends = php
+	depends = c-client
+
+pkgname = php-intl
+	pkgdesc = intl module for PHP
+	depends = php
+	depends = icu
+
+pkgname = php-ldap
+	pkgdesc = ldap module for PHP
+	depends = php
+	depends = libldap
+
+pkgname = php-mcrypt
+	pkgdesc = mcrypt module for PHP
+	depends = php
+	depends = libmcrypt
+	depends = libltdl
+
+pkgname = php-odbc
+	pkgdesc = ODBC modules for PHP
+	depends = php
+	depends = unixodbc
+
+pkgname = php-pgsql
+	pkgdesc = PostgreSQL modules for PHP
+	depends = php
+	depends = postgresql-libs
+
+pkgname = php-pspell
+	pkgdesc = pspell module for PHP
+	depends = php
+	depends = aspell
+
+pkgname = php-snmp
+	pkgdesc = snmp module for PHP
+	depends = php
+	depends = net-snmp
+
+pkgname = php-sqlite
+	pkgdesc = sqlite module for PHP
+	depends = php
+	depends = sqlite
+
+pkgname = php-tidy
+	pkgdesc = tidy module for PHP
+	depends = php
+	depends = tidyhtml
+
+pkgname = php-xsl
+	pkgdesc = xsl module for PHP
+	depends = php
+	depends = libxslt
+
