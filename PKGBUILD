@@ -24,7 +24,7 @@ pkgname=('php'
 _pkgver=7.0.0
 _rcver=RC5
 pkgver=${_pkgver}$_rcver
-pkgrel=1.1
+pkgrel=1.2
 arch=('i686' 'x86_64')
 license=('PHP')
 url='http://www.php.net'
@@ -272,6 +272,7 @@ package_php() {
     # sane default extensions ?
     ln -sf /etc/php/extensions/curl.ini ${pkgdir}/etc/php/conf.d/curl.ini
     ln -sf /etc/php/extensions/phar.ini ${pkgdir}/etc/php/conf.d/phar.ini
+    ln -sf /etc/php/extensions/openssl.ini ${pkgdir}/etc/php/conf.d/openssl.ini
 }
 
 package_php-cgi() {
