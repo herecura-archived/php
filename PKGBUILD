@@ -22,9 +22,9 @@ pkgname=('php'
          'php-tidy'
          'php-xsl')
 _pkgver=7.0.0
-_rcver=RC5
+_rcver=RC6
 pkgver=${_pkgver}$_rcver
-pkgrel=1.2
+pkgrel=1
 arch=('i686' 'x86_64')
 license=('PHP')
 url='http://www.php.net'
@@ -38,7 +38,7 @@ if [[ "$_rcver" != "" ]]; then
         "http://downloads.php.net/~ab/${pkgbase}-${pkgver}.tar.xz"
     )
     md5sums=(
-        'a490f25243a19dc6f577dcbc539b97ff'
+        '809731123f62a9fcc706385de9a5dc5b'
     )
 else
     source=(
