@@ -22,23 +22,23 @@ pkgname=('php'
          'php-tidy'
          'php-xsl')
 _pkgver=7.0.0
-_rcver=RC6
+_rcver=RC7
 pkgver=${_pkgver}$_rcver
-pkgrel=2
+pkgrel=1
 arch=('i686' 'x86_64')
 license=('PHP')
 url='http://www.php.net'
 makedepends=('apache' 'c-client' 'postgresql-libs' 'libldap' 'postfix'
              'sqlite' 'unixodbc' 'net-snmp' 'libzip' 'enchant' 'file' 'freetds'
              'libmcrypt' 'tidyhtml' 'aspell' 'libltdl' 'gd' 'icu'
-             'curl' 'libxslt' 'openssl' 'db' 'gmp' 'systemd' 'libedit')
+             'curl' 'libxslt' 'openssl' 'db' 'gmp' 'systemd' 'libedit' 'wget')
 checkdepends=('procps-ng')
 if [[ "$_rcver" != "" ]]; then
     source=(
         "http://downloads.php.net/~ab/${pkgbase}-${pkgver}.tar.xz"
     )
     md5sums=(
-        '809731123f62a9fcc706385de9a5dc5b'
+        '5bb4e6b8bf969d2bd5ab222c60c52dad'
     )
 else
     source=(
@@ -165,12 +165,12 @@ build() {
 	mkdir ${srcdir}/build-php
 	cd ${srcdir}/build-php
 	ln -s ../${pkgbase}-${pkgver}/configure
-	./configure ${_phpconfig} \
-		--without-pear \
-		--disable-cgi \
-		--enable-pcntl \
-		${_phpextensions}
-	make
+    ./configure ${_phpconfig} \
+        --without-pear \
+        --disable-cgi \
+        --enable-pcntl \
+        ${_phpextensions}
+    make
 
 	# cgi and fcgi
 	# reuse the previous run; this will save us a lot of time
