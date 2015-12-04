@@ -22,7 +22,7 @@ pkgname=('php'
          'php-tidy'
          'php-xsl')
 _pkgver=7.0.0
-_rcver=RC8
+_rcver=
 pkgver=${_pkgver}$_rcver
 pkgrel=1
 arch=('i686' 'x86_64')
@@ -31,14 +31,15 @@ url='http://www.php.net'
 makedepends=('apache' 'c-client' 'postgresql-libs' 'libldap' 'postfix'
              'sqlite' 'unixodbc' 'net-snmp' 'libzip' 'enchant' 'file' 'freetds'
              'libmcrypt' 'tidyhtml' 'aspell' 'libltdl' 'gd' 'icu'
-             'curl' 'libxslt' 'openssl' 'db' 'gmp' 'systemd' 'libedit' 'wget')
+             'curl' 'libxslt' 'openssl' 'db' 'gmp' 'systemd' 'libedit' 'wget'
+             'oniguruma')
 checkdepends=('procps-ng')
 if [[ "$_rcver" != "" ]]; then
     source=(
         "http://downloads.php.net/~ab/${pkgbase}-${pkgver}.tar.xz"
     )
     md5sums=(
-        'faf3b29455ddf8613a0b187f456cf96d'
+        ''
     )
 else
     source=(
@@ -46,7 +47,7 @@ else
         "http://www.php.net/distributions/${pkgbase}-${pkgver}.tar.xz.asc"
     )
     md5sums=(
-        'a490f25243a19dc6f577dcbc539b97ff'
+        '394e4d6c517078ca3e23acf633c5ed27'
         'SKIP'
     )
 fi
@@ -65,8 +66,9 @@ md5sums+=(
     'cc2940f5312ba42e7aa1ddfab74b84c4'
     'c60343df74f8e1afb13b084d5c0e47ed'
 )
-validpgpkeys=('6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3'
-              '0BD78B5F97500D450838F95DFE857D9A90D90EC1')
+validpgpkeys=('6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3'  # Ferenc Kovacs <tyrael@php.net>
+              '0BD78B5F97500D450838F95DFE857D9A90D90EC1'  # Julien Pauli <jpauli@php.net>
+              '1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763') # Anatol Belski <ab@php.net>
 
 prepare() {
 	cd ${srcdir}/${pkgbase}-${pkgver}
@@ -226,24 +228,24 @@ check() {
 	# tests on i686 fail
 	[[ $CARCH == 'i686' ]] && return
 
-    # in general the tests fail
-	#cd ${srcdir}/build-php
+    cd ${srcdir}/build-php
 
-	#export REPORT_EXIT_STATUS=1
-	#export NO_INTERACTION=1
-	#export SKIP_ONLINE_TESTS=1
-	#export SKIP_SLOW_TESTS=1
+    #export REPORT_EXIT_STATUS=1
+    export NO_INTERACTION=1
+    #export SKIP_ONLINE_TESTS=1
+    #export SKIP_SLOW_TESTS=1
 
-	#sapi/cli/php -n \
-		#${srcdir}/${pkgbase}-${pkgver}/run-tests.php -n -P \
-		#${srcdir}/${pkgbase}-${pkgver}/{Zend,ext/{date,pcre,spl,standard},sapi/cli}
+    #sapi/cli/php -n \
+        #${srcdir}/${pkgbase}-${pkgver}/run-tests.php -n -P \
+        #${srcdir}/${pkgbase}-${pkgver}/{Zend,ext/{date,pcre,spl,standard},sapi/cli}
+    make test
 
     echo
 }
 
 package_php() {
 	pkgdesc='An HTML-embedded scripting language'
-	depends=('pcre' 'libxml2' 'curl' 'libzip' 'libedit' 'openssl')
+	depends=('pcre' 'libxml2' 'curl' 'libzip' 'libedit' 'openssl' 'oniguruma')
 	backup=('etc/php/php.ini')
 
 	cd ${srcdir}/build-php
